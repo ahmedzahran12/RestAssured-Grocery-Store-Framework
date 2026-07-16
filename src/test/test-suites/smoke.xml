@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+
+
+<suite name="Smoke Suite" parallel="none" verbose="1">
+
+    <!-- ═══════════════════ AUTH ═══════════════════ -->
+    <test name="Smoke - Auth">
+        <classes>
+            <!-- Verifies that a new API client can register and receive an access token -->
+            <class name="testcases.auth.RegistrationTest">
+                <methods>
+                    <include name="testValidSuccessfulRegistration"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <!-- ═══════════════════ PRODUCT ═══════════════ -->
+    <test name="Smoke - Product">
+        <classes>
+            <class name="testcases.product.GetProductsHappyPathTest"/>
+        </classes>
+    </test>
+
+    <!-- ═══════════════════ CART ═══════════════════ -->
+    <test name="Smoke - Cart">
+        <classes>
+            <!-- Core cart lifecycle: create → add → modify → replace → delete -->
+            <class name="testcases.cart.create_cart.CreateNewCartTest"/>
+            <class name="testcases.cart.add_item.AddItemHappyPathTest">
+                <methods>
+                    <include name="testAddingItemAndVerifyItExists"/>
+                </methods>
+            </class>
+            <class name="testcases.cart.modify_item.ModifyItemHappyPathTest"/>
+            <class name="testcases.cart.replace_item.ReplaceItemHappyPathTest"/>
+            <class name="testcases.cart.delete_item.DeleteItemHappyPathTest"/>
+        </classes>
+    </test>
+
+    <!-- ═══════════════════ ORDER ══════════════════ -->
+    <test name="Smoke - Order">
+        <classes>
+            <class name="testcases.order.create_order.CreateOrderTest"/>
+            <class name="testcases.order.get_all_orders.GetAllOrdersHappyPathTest">
+                <methods>
+                    <include name="testGetAllOrdersReturnsSuccessfully"/>
+                </methods>
+            </class>
+            <class name="testcases.order.get_order_by_id.GetOrderByIdHappyPathTest">
+                <methods>
+                    <include name="testGetOrderByIdReturnsCorrectOrder"/>
+                </methods>
+            </class>
+            <class name="testcases.order.update_order.UpdateOrderHappyPathTest">
+                <methods>
+                    <include name="testUpdateOrderCustomerNameSuccessfully"/>
+                </methods>
+            </class>
+            <class name="testcases.order.delete_order.DeleteOrderHappyPathTest">
+                <methods>
+                    <include name="testDeleteOrderAndVerifyItNoLongerExists"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>

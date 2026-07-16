@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+
+<suite name="Full Parallel Suite" parallel="classes" thread-count="22" verbose="1">
+
+    <!-- ═══════════════════════════════ AUTH ═══════════════════════════════ -->
+    <test name="Auth Tests">
+        <classes>
+            <class name="testcases.auth.RegistrationTest"/>
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════ PRODUCT ════════════════════════════ -->
+    <test name="Product Tests">
+        <classes>
+            <class name="testcases.product.GetProductsHappyPathTest"/>
+            <class name="testcases.product.GetProductNegativeTest"/>
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════ CART ══════════════════════════════ -->
+    <test name="Cart Tests">
+        <classes>
+            <class name="testcases.cart.create_cart.CreateNewCartTest"/>
+            <class name="testcases.cart.add_item.AddItemHappyPathTest"/>
+            <class name="testcases.cart.add_item.AddItemNegativeTest"/>
+            <class name="testcases.cart.delete_item.DeleteItemHappyPathTest"/>
+            <class name="testcases.cart.delete_item.DeleteItemNegativeTest"/>
+            <class name="testcases.cart.modify_item.ModifyItemHappyPathTest"/>
+            <class name="testcases.cart.modify_item.ModifyItemNegativeTest"/>
+            <class name="testcases.cart.replace_item.ReplaceItemHappyPathTest"/>
+            <class name="testcases.cart.replace_item.ReplaceItemNegativeTest"/>
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════ ORDER ═════════════════════════════ -->
+    <test name="Order Tests">
+        <classes>
+            <class name="testcases.order.create_order.CreateOrderTest"/>
+            <class name="testcases.order.create_order.CreateOrderNegativeTest"/>
+            <class name="testcases.order.get_all_orders.GetAllOrdersHappyPathTest"/>
+            <class name="testcases.order.get_all_orders.GetAllOrdersNegativeTest"/>
+            <class name="testcases.order.get_order_by_id.GetOrderByIdHappyPathTest"/>
+            <class name="testcases.order.get_order_by_id.GetOrderByIdNegativeTest"/>
+            <class name="testcases.order.update_order.UpdateOrderHappyPathTest"/>
+            <class name="testcases.order.update_order.UpdateOrderNegativeTest"/>
+            <class name="testcases.order.delete_order.DeleteOrderHappyPathTest"/>
+            <class name="testcases.order.delete_order.DeleteOrderNegativeTest"/>
+        </classes>
+    </test>
+
+</suite>
