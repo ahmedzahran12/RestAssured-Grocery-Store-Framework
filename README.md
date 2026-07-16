@@ -1,4 +1,4 @@
-<h1 align="center">🛒 RestAssured BDD Grocery Store — API Test Automation Framework</h1>
+<h1 align="center">🛒 RestAssured Grocery Store — API Test Automation Framework</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Java-9-orange?style=for-the-badge&logo=java" />
