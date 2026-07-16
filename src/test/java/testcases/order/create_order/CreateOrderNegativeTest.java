@@ -17,7 +17,7 @@ public class CreateOrderNegativeTest {
         String cartId = CartService.createNewCartAndGetId();
         CartService.addRandomItemToCart(cartId);
         CreateOrderRequest request = new CreateOrderRequest();
-        request.setCartId(cartId).setCustomerName(Faker.instance().name().fullName());
+        request.setCartId(cartId).setCustomerName(new Faker().name().fullName());
         // Act
         ErrorResponse errorResponse = new OrdersEndpoint().createOrder(401, ErrorResponse.class, request, "invalid-token");
         // Assert
@@ -29,7 +29,7 @@ public class CreateOrderNegativeTest {
         // Arrange
         String token = TokenService.getToken();
         CreateOrderRequest request = new CreateOrderRequest();
-        request.setCustomerName(Faker.instance().name().fullName());
+        request.setCustomerName(new Faker().name().fullName());
         // cartId is intentionally not set (null)
         // Act
         ErrorResponse errorResponse = new OrdersEndpoint().createOrder(400, ErrorResponse.class, request, token);
@@ -58,7 +58,7 @@ public class CreateOrderNegativeTest {
         String token = TokenService.getToken();
         String invalidCartId = "invalid-cart-id-xyz";
         CreateOrderRequest request = new CreateOrderRequest();
-        request.setCartId(invalidCartId).setCustomerName(Faker.instance().name().fullName());
+        request.setCartId(invalidCartId).setCustomerName(new Faker().name().fullName());
         // Act
         ErrorResponse errorResponse = new OrdersEndpoint().createOrder(400, ErrorResponse.class, request, token);
         // Assert
@@ -72,7 +72,7 @@ public class CreateOrderNegativeTest {
         String cartId = CartService.createNewCartAndGetId();
         // No items added to cart
         CreateOrderRequest request = new CreateOrderRequest();
-        request.setCartId(cartId).setCustomerName(Faker.instance().name().fullName());
+        request.setCartId(cartId).setCustomerName(new Faker().name().fullName());
         // Act
         ErrorResponse errorResponse = new OrdersEndpoint().createOrder(400, ErrorResponse.class, request, token);
         // Assert

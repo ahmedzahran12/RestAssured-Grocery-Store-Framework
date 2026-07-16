@@ -24,7 +24,7 @@ public class UpdateOrderNegativeTest {
         String token = TokenService.getToken();
         String invalidOrderId = "non-existent-order-id-xyz";
         CreateOrderRequest updateRequest = new CreateOrderRequest();
-        updateRequest.setCustomerName(Faker.instance().name().fullName());
+        updateRequest.setCustomerName(new Faker().name().fullName());
         // Act
         Response response = given()
                 .baseUri(ConfigLoader.getProperty("baseUrl"))
@@ -51,7 +51,7 @@ public class UpdateOrderNegativeTest {
         String orderId = new OrderService().createOrderAndGetId(cartId, token);
         String invalidToken = "invalid-bearer-token";
         CreateOrderRequest updateRequest = new CreateOrderRequest();
-        updateRequest.setCustomerName(Faker.instance().name().fullName());
+        updateRequest.setCustomerName(new Faker().name().fullName());
         // Act
         Response response = given()
                 .baseUri(ConfigLoader.getProperty("baseUrl"))
@@ -77,7 +77,7 @@ public class UpdateOrderNegativeTest {
         CartService.addRandomItemToCart(cartId);
         String orderId = new OrderService().createOrderAndGetId(cartId, token);
         CreateOrderRequest updateRequest = new CreateOrderRequest();
-        updateRequest.setCustomerName(Faker.instance().name().fullName());
+        updateRequest.setCustomerName(new Faker().name().fullName());
         // Act - no Authorization header
         Response response = given()
                 .baseUri(ConfigLoader.getProperty("baseUrl"))
@@ -105,7 +105,7 @@ public class UpdateOrderNegativeTest {
         // Register a second API client
         String token2 = RegisterService.registerClientAndGetToken();
         CreateOrderRequest updateRequest = new CreateOrderRequest();
-        updateRequest.setCustomerName(Faker.instance().name().fullName());
+        updateRequest.setCustomerName(new Faker().name().fullName());
 
         // Act - try to update token1's order using token2
         Response response = given()

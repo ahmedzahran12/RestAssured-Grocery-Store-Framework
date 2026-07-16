@@ -13,8 +13,8 @@ public class RegisterService {
     }
     public static String registerClientAndGetToken(){
         ClientRegisterRequest request = new ClientRegisterRequest();
-        request.setClientName(Faker.instance().name().fullName());
-        request.setClientEmail(Faker.instance().internet().emailAddress());
+        request.setClientName(new Faker().name().fullName());
+        request.setClientEmail(new Faker().internet().emailAddress());
         ClientRegisterResponse response = new ClientEndpoint().registerClient(201,ClientRegisterResponse.class,request,"schemas/client-created-schema.json");
         return response.accessToken;
     }

@@ -23,7 +23,7 @@ public class GetAllOrdersHappyPathTest {
         String cartId = CartService.createNewCartAndGetId();
         CartService.addRandomItemToCart(cartId);
         CreateOrderRequest request = new CreateOrderRequest();
-        request.setCartId(cartId).setCustomerName(Faker.instance().name().fullName());
+        request.setCartId(cartId).setCustomerName(new Faker().name().fullName());
         new OrdersEndpoint().createOrder(201, CreateOrderResponse.class, request, token);
         // Act
         List<GetOrder> orders = new OrdersEndpoint().getAllOrders(200, "schemas/all-orders-schema.json", List.class, token);
@@ -38,7 +38,7 @@ public class GetAllOrdersHappyPathTest {
         String token = TokenService.getToken();
         String cartId = CartService.createNewCartAndGetId();
         CartService.addRandomItemToCart(cartId);
-        String customerName = Faker.instance().name().fullName();
+        String customerName = new Faker().name().fullName();
         CreateOrderRequest request = new CreateOrderRequest();
         request.setCartId(cartId).setCustomerName(customerName);
         CreateOrderResponse createResponse = new OrdersEndpoint().createOrder(201, CreateOrderResponse.class, request, token);

@@ -26,7 +26,7 @@ public class UpdateOrderHappyPathTest {
         String cartId = CartService.createNewCartAndGetId();
         CartService.addRandomItemToCart(cartId);
         String orderId = new OrderService().createOrderAndGetId(cartId, token);
-        String newCustomerName = Faker.instance().name().fullName();
+        String newCustomerName = new Faker().name().fullName();
         CreateOrderRequest updateRequest = new CreateOrderRequest();
         updateRequest.setCustomerName(newCustomerName);
         // Act - PATCH returns 204 No Content
@@ -79,7 +79,7 @@ public class UpdateOrderHappyPathTest {
         String cartId = CartService.createNewCartAndGetId();
         CartService.addRandomItemToCart(cartId);
         String orderId = new OrderService().createOrderAndGetId(cartId, token);
-        String newCustomerName = Faker.instance().name().fullName();
+        String newCustomerName = new Faker().name().fullName();
         String newComment = "Ring the bell twice";
         CreateOrderRequest updateRequest = new CreateOrderRequest();
         updateRequest.setCustomerName(newCustomerName).setComment(newComment);

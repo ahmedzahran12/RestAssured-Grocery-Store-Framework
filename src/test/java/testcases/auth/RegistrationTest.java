@@ -12,8 +12,8 @@ public class RegistrationTest {
     public void testValidSuccessfulRegistration(){
         //Arrange
         ClientRegisterRequest request = new ClientRegisterRequest();
-        String clientName = Faker.instance().name().fullName();
-        String email = Faker.instance().internet().emailAddress();
+        String clientName = new Faker().name().fullName();
+        String email = new Faker().internet().emailAddress();
         request.setClientName(clientName).setClientEmail(email);
         //Act
         ClientRegisterResponse response = new ClientEndpoint().registerClient(201, ClientRegisterResponse.class, request, "schemas/client-created-schema.json");
@@ -25,7 +25,7 @@ public class RegistrationTest {
     public void testRegistrationWithMissingEmail(){
         //Arrange
         ClientRegisterRequest request = new ClientRegisterRequest();
-        String name = Faker.instance().name().fullName();
+        String name = new Faker().name().fullName();
         request.setClientName(name);
         ErrorResponse response;
         //Act
@@ -37,7 +37,7 @@ public class RegistrationTest {
     @Test
     public void testRegistrationWithMissingClientName(){
         ClientRegisterRequest request = new ClientRegisterRequest();
-        String email = Faker.instance().internet().emailAddress();
+        String email = new Faker().internet().emailAddress();
         request.setClientEmail(email);
         ErrorResponse response;
         //Act
@@ -49,8 +49,8 @@ public class RegistrationTest {
     @Test
     public void testRegistrationWithInvalidEmailFormat(){
         ClientRegisterRequest request = new ClientRegisterRequest();
-        String invalidEmail = Faker.instance().name().fullName();
-        String name = Faker.instance().name().fullName();
+        String invalidEmail = new Faker().name().fullName();
+        String name = new Faker().name().fullName();
         request.setClientName(name).setClientEmail(invalidEmail);
         ErrorResponse response;
         //Act
@@ -62,7 +62,7 @@ public class RegistrationTest {
     @Test
     public void testRegistrationWithEmptyClientName(){
         ClientRegisterRequest request = new ClientRegisterRequest();
-        String email = Faker.instance().internet().emailAddress();
+        String email = new Faker().internet().emailAddress();
         request.setClientName("").setClientEmail(email);
         ErrorResponse response;
         //Act
@@ -74,7 +74,7 @@ public class RegistrationTest {
     @Test
     public void testRegistrationWithEmptyClientEmail(){
         ClientRegisterRequest request = new ClientRegisterRequest();
-        String name = Faker.instance().name().fullName();
+        String name = new Faker().name().fullName();
         request.setClientName(name).setClientEmail("");
         ErrorResponse response;
         //Act
@@ -87,8 +87,8 @@ public class RegistrationTest {
     public void testRegistrationWithEmailAlreadyRegistered(){
         //Arrange
         ClientRegisterRequest request = new ClientRegisterRequest();
-        String email = Faker.instance().internet().emailAddress();
-        String clientName = Faker.instance().name().fullName();
+        String email = new Faker().internet().emailAddress();
+        String clientName = new Faker().name().fullName();
         request.setClientEmail(email).setClientName(clientName);
         // First registration should succeed (Act)
         ClientRegisterResponse firstResponse = new ClientEndpoint().registerClient(201, ClientRegisterResponse.class, request, "schemas/client-created-schema.json");

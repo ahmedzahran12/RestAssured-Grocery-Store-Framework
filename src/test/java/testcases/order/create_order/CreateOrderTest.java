@@ -20,7 +20,7 @@ public class CreateOrderTest {
         String cartId = CartService.createNewCartAndGetId();
         CartItem item = CartService.addRandomItemToCart(cartId);
         CreateOrderRequest request = new CreateOrderRequest();
-        String customerName = Faker.instance().name().fullName();
+        String customerName = new Faker().name().fullName();
         request.setCartId(cartId).setCustomerName(customerName);
         String token = TokenService.getToken();
         CreateOrderResponse createOrder;

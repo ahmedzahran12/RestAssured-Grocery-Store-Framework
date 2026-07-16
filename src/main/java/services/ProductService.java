@@ -13,7 +13,7 @@ public class ProductService {
 
     private static ProductResponse[] cachedProducts = null;
 
-    private static void initializeCacheIfEmpty() {
+    private static synchronized void initializeCacheIfEmpty() {
         if (cachedProducts == null) {
             System.out.println("Fetching products from API to build local cache...");
             cachedProducts = new ProductEndpoint().getAllProducts(200, "schemas/product-list-schema.json", ProductResponse[].class);

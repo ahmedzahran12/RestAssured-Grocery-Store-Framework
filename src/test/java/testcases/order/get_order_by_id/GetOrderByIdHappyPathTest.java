@@ -20,7 +20,7 @@ public class GetOrderByIdHappyPathTest {
         String token = TokenService.getToken();
         String cartId = CartService.createNewCartAndGetId();
         CartItem addedItem = CartService.addRandomItemToCart(cartId);
-        String customerName = Faker.instance().name().fullName();
+        String customerName = new Faker().name().fullName();
         CreateOrderRequest request = new CreateOrderRequest();
         request.setCartId(cartId).setCustomerName(customerName);
         CreateOrderResponse createResponse = new OrdersEndpoint().createOrder(201, CreateOrderResponse.class, request, token);
@@ -43,7 +43,7 @@ public class GetOrderByIdHappyPathTest {
         String cartId = CartService.createNewCartAndGetId();
         CartItem addedItem = CartService.addRandomItemToCart(cartId);
         CreateOrderRequest request = new CreateOrderRequest();
-        request.setCartId(cartId).setCustomerName(Faker.instance().name().fullName());
+        request.setCartId(cartId).setCustomerName(new Faker().name().fullName());
         CreateOrderResponse createResponse = new OrdersEndpoint().createOrder(201, CreateOrderResponse.class, request, token);
         // Act
         GetOrder order = new OrdersEndpoint().getOrderById(200, "schemas/order-schema.json", GetOrder.class, createResponse.orderId, token);
@@ -62,7 +62,7 @@ public class GetOrderByIdHappyPathTest {
         String token = TokenService.getToken();
         String cartId = CartService.createNewCartAndGetId();
         CartService.addRandomItemToCart(cartId);
-        String customerName = Faker.instance().name().fullName();
+        String customerName = new Faker().name().fullName();
         String comment = "Please deliver before noon";
         CreateOrderRequest request = new CreateOrderRequest();
         request.setCartId(cartId).setCustomerName(customerName).setComment(comment);

@@ -9,9 +9,9 @@ import utils.ConfigLoader;
 
 public class TokenService {
     private static final ThreadLocal<String> cachedToken = new ThreadLocal<>();
-    private static final Faker faker = new Faker();
     public static String getToken(){
         if(cachedToken.get() == null || cachedToken.get().isEmpty()) {
+            Faker faker = new Faker();
 
             String clientName = ConfigLoader.getProperty("clientName");
             String clientEmail =  ConfigLoader.getProperty("clientEmail");
