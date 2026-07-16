@@ -80,6 +80,16 @@ public class RestHelper {
                 .extract().response().as(responseClass);
     }
 
+    public static <T> T postNoBody(String endpoint, Class<T> responseClass, Integer statusCode) {
+        return given()
+                .baseUri(ConfigLoader.getProperty("baseUrl"))
+                .when()
+                .post(endpoint)
+                .then()
+                .statusCode(statusCode)
+                .extract().response().as(responseClass);
+    }
+
     public static <T, R> T post(String endpoint, Class<T> responseClass, Integer statusCode, R body, String token) {
         return given()
                 .baseUri(ConfigLoader.getProperty("baseUrl"))
