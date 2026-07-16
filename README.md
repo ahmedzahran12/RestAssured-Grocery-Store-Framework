@@ -697,41 +697,43 @@ brew install allure
 
 **File:** `.github/workflows/regression.yml`
 
-The pipeline triggers automatically on every **push** or **pull request** to the `master` branch, ensuring no broken tests ever reach production.
+The pipeline triggers automatically on every **push** or **pull request** to the `main` branch, ensuring no broken tests ever reach production. It can also be triggered manually via the `workflow_dispatch` event.
 
 ```yaml
 name: regression
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - main
   pull_request:
-    branches: [ master ]
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   regression-linux:
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout test
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
 
       - name: Java setup
-        uses: actions/setup-java@v6
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '25'
+          java-version: '21'
 
       - name: Run Tests
-        run: mvn test -DsuiteXmlFile=regression-parallel.xml
-        continue-on-error: true       # pipeline never blocks on test failures
+        run: mvn test -DsuiteXmlFile=src/test/test-suites/regression-parallel.xml
+        continue-on-error: true
 
-      - name: Upload Report
-        uses: actions/upload-artifact@v7
-        if: always()                  # runs even when tests fail
+      - name: Upload Surefire Report
+        uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: regression-report
-          path: "**/*.html"
+          path: target/surefire-reports/
 ```
 
 ### Key CI/CD Design Choices
@@ -742,7 +744,7 @@ jobs:
 | `if: always()` on report upload | HTML artifacts are uploaded whether tests pass or fail |
 | `regression-parallel.xml` suite | Full regression with 11-thread parallelism — balanced for CI |
 | Ubuntu runner | Cross-platform validation; rules out Windows-specific path dependencies |
-| Java 25 (Temurin) | Latest supported distribution — matches modern JDK capabilities |
+| Java 21 (Temurin) | Latest LTS distribution — matches modern JDK capabilities |
 | `**/*.html` artifact glob | Captures both Surefire and Allure HTML reports in one artifact download |
 
 ---
@@ -843,12 +845,12 @@ This opens an interactive Allure dashboard in your browser automatically.
 
 ### Step 6 — (CI) Check GitHub Actions
 
-On every push to `master`, GitHub Actions automatically:
+On every push to `main` (or via manual dispatch), GitHub Actions automatically:
 
 1. Checks out the code
-2. Sets up Java 25
+2. Sets up Java 21
 3. Runs `regression-parallel.xml`
-4. Uploads the HTML report as a downloadable artifact named `regression-report`
+4. Uploads the Surefire report as a downloadable artifact named `regression-report`
 
 Navigate to **Actions** tab → latest run → **regression-report** artifact to download.
 
