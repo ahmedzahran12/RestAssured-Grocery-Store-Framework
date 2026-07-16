@@ -900,15 +900,7 @@ To target a different environment (e.g. staging), simply change `baseUrl` — no
 
 ---
 
-### 👨‍💻 About the Author
 
-**Ahmed Zahran**
-
-*Test Automation Engineer passionate about clean architecture, scalable frameworks, and the craft of quality engineering.*
-
-> *"Quality is never an accident — it is always the result of intelligent effort."*
-
----
 
 *If this framework helped you or impressed you, feel free to ⭐ the repository — it means the world!*
 
