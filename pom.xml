@@ -12,8 +12,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <!-- Default suite to run. Override via: mvn test -DsuiteXmlFile=regression-parallel.xml -->
-    <suiteXmlFile>smoke.xml</suiteXmlFile>
+    <!-- Default suite to run. Override via: mvn test -DsuiteXmlFile=src/test/test-suites/regression-parallel.xml -->
+    <suiteXmlFile>src/test/test-suites/smoke.xml</suiteXmlFile>
   </properties>
 
   <dependencies>
