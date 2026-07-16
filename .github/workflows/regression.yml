@@ -1,4 +1,5 @@
 name: regression
+
 on:
   push:
     branches:
@@ -7,23 +8,27 @@ on:
     branches:
       - main
   workflow_dispatch:
+
 jobs:
   regression-linux:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout test
         uses: actions/checkout@v4
-      - name: java setup
+
+      - name: Java setup
         uses: actions/setup-java@v4
         with:
-            distribution: 'temurin' # See 'Supported distributions' for available options
-            java-version: '21'
+          distribution: 'temurin'
+          java-version: '21'
+
       - name: Run Tests
         run: mvn test -DsuiteXmlFile=regression-parallel.xml
         continue-on-error: true
+
       - name: Upload Report
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: regression-report
-
+          path: target/surefire-reports/
