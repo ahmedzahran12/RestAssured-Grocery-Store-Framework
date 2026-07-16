@@ -80,12 +80,14 @@ public class RestHelper {
                 .extract().response().as(responseClass);
     }
 
-    public static <T> T postNoBody(String endpoint, Class<T> responseClass, Integer statusCode) {
+    public static <T> T postNoBody(String endpoint, Class<T> responseClass, Integer statusCode, String schemaPath) {
         return given()
                 .baseUri(ConfigLoader.getProperty("baseUrl"))
+                .contentType(ContentType.JSON)
                 .when()
                 .post(endpoint)
                 .then()
+                .assertThat().body(matchesJsonSchemaInClasspath(schemaPath))
                 .statusCode(statusCode)
                 .extract().response().as(responseClass);
     }

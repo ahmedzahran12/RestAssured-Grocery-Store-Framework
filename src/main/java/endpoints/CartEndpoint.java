@@ -13,7 +13,7 @@ public class CartEndpoint {
     }
 
     public CreateCartResponse createNewCart(Integer statusCode, String schemaPath) {
-        return RestHelper.postNoBody(cartEndpoint, CreateCartResponse.class, statusCode);
+        return RestHelper.postNoBody(cartEndpoint, CreateCartResponse.class, statusCode, schemaPath);
     }
 
     public <T> T AddCartItem(Integer statusCode, CartItemRequest request, Class<T> responseClass, String CartId) {
