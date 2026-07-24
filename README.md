@@ -1,5 +1,12 @@
 <h1 align="center">🛒 RestAssured Grocery Store — API Test Automation Framework</h1>
-
+<p align="center">
+  <img src="https://img.shields.io/badge/Java-9-orange?style=for-the-badge&logo=java" />
+  <img src="https://img.shields.io/badge/REST--Assured-6.0.0-green?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/TestNG-7.12.0-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Allure-2.29.1-yellow?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Maven-Build-red?style=for-the-badge&logo=apache-maven" />
+  <img src="https://img.shields.io/badge/GitHub%20Actions-CI%2FCD-black?style=for-the-badge&logo=github-actions" />
+</p>
 
 
 <p align="center">
